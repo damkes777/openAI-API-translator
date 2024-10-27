@@ -2,23 +2,21 @@
 
 namespace App\Services;
 
+use App\Enums\StatusCodes;
 use App\Services\OpenAI\OpenAIApi;
 use GuzzleHttp\Exception\GuzzleException;
 use JsonException;
 
 class TranslateDescriptionService extends OpenAIApi
 {
-    private const BASE_PROMPT = 'Translate the product description: ';
+    private const USER_PROMPT = 'Translate the product description: ';
+    private const SYSTEM_PROMPT = 'You translate the given description into the following languages: ';
 
-    private array $languages;
-    private string $description;
-
-    public function __construct(array $languages, string $description)
-    {
+    public function __construct(
+        private readonly array $languages,
+        private readonly string $description
+    ) {
         parent::__construct();
-
-        $this->languages   = $languages;
-        $this->description = $description;
     }
 
     /**
@@ -27,11 +25,16 @@ class TranslateDescriptionService extends OpenAIApi
      */
     public function translate(): array
     {
-        $messages = $this->prepareMessages();
+        $messages       = $this->prepareMessages();
         $responseFormat = config('translateDescriptionSchema');
+
         $response = $this->sendRequest($messages, $responseFormat);
 
-        return [];
+        if ($response->getStatusCode() != StatusCodes::STATUS_CODE_200) {
+            return [];
+        }
+
+        return $response->getResult();
     }
 
     private function prepareLanguages(): string
@@ -44,37 +47,12 @@ class TranslateDescriptionService extends OpenAIApi
         return [
             [
                 'role' => 'system',
-                'content' => 'You translate the given description into the following languages:' .
-                             $this->prepareLanguages(),
+                'content' => self::SYSTEM_PROMPT . $this->prepareLanguages(),
             ],
             [
                 'role' => 'user',
-                'content' => self::BASE_PROMPT . $this->description,
+                'content' => self::USER_PROMPT . $this->description,
             ],
         ];
     }
-
-    // private function prepareResponseFormat(): array
-    // {
-    //     return [
-    //         'type' => 'json_schema',
-    //         'json_schema' => [
-    //             'name' => 'description_translation_schema',
-    //             'description' => 'Translated product description to given languages',
-    //             'schema' => [
-    //                 'type' => 'object',
-    //                 'properties' => [
-    //                     'product_description' => [
-    //                         'type' => 'string',
-    //                         'description' => 'Translated product description',
-    //                     ],
-    //                     'description_language' => [
-    //                         'type' => 'string',
-    //                         'description' => 'Language of the translated product description',
-    //                     ],
-    //                 ],
-    //             ],
-    //         ],
-    //     ];
-    // }
 }

@@ -33,10 +33,10 @@ class OpenAIResponse
         $this->statusCode = $this->response->getStatusCode();
 
         if ($this->getStatusCode() === self::STATUS_CODE_200) {
-            $choices = (collect($responseDecoded->choices))->first();
+            $choices = (collect($responseDecoded['choices']))->first();
 
             $this->result       = json_decode($choices['message']['content'], true, 512, JSON_THROW_ON_ERROR);
-            $this->refusal      = $choices['message']['refusal'];
+            $this->refusal      = $choices['message']['refusal'] ?? '';
             $this->finishReason = $choices['finish_reason'];
         } else {
             $this->message = self::FAIL_MESSAGE . $this->response->getStatusCode();
