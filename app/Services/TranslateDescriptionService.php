@@ -27,8 +27,7 @@ class TranslateDescriptionService extends OpenAIApi
     {
         $messages       = $this->prepareMessages();
         $responseFormat = config('translateDescriptionSchema');
-
-        $response = $this->sendRequest($messages, $responseFormat);
+        $response       = $this->sendRequest($messages, $responseFormat);
 
         if ($response->getStatusCode() != StatusCodes::STATUS_CODE_200) {
             return [];
