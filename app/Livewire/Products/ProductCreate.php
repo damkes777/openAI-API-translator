@@ -12,6 +12,6 @@ class ProductCreate extends Component
 
     public function render(): View
     {
-        return view('products.create');
+        return view('livewire.products.form');
     }
 }
