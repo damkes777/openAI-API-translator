@@ -16,7 +16,12 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="bg-gray-100">
-<main>
+<livewire:navigation />
+<main class="container bg-white mx-auto mt-8 p-5 rounded-md shadow-sm">
+    <div>
+        <h2 class="text-2xl font-extrabold dark:text-white">{{ $header }}</h2>
+        <hr class="h-px my-2 bg-gray-200 border-0 dark:bg-gray-700">
+    </div>
     {{ $slot }}
 </main>
 @livewireScripts
