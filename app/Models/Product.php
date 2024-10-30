@@ -10,7 +10,7 @@ class Product extends Model
 {
     use HasFactory;
 
-    public $fillable = [
+    public $fillable = [ // todo: add brand, category, state, tags, currency
         'name',
         'price_net',
         'quantity',
