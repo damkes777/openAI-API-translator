@@ -7,9 +7,6 @@ use Livewire\Component;
 
 class ProductCreate extends Component
 {
-    public function mount()
-    {}
-
     public function render(): View
     {
         return view('livewire.products.form');
