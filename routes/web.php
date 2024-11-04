@@ -13,5 +13,7 @@ Route::controller(ProductsController::class)
               ->name('products.index');
          Route::get('products/create', 'create')
               ->name('products.create');
+         Route::post('products/store', 'store')
+              ->name('products.store');
      });
 

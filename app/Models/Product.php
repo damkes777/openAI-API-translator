@@ -10,10 +10,14 @@ class Product extends Model
 {
     use HasFactory;
 
-    public $fillable = [ // todo: add brand, category, state, tags, currency
+    public $fillable = [
         'name',
-        'price_net',
+        'brand',
+        'price',
         'quantity',
+        'category',
+        'state',
+        'return_politycy'
     ];
 
     public function descriptions(): HasMany

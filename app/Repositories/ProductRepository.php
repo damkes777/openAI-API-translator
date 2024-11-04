@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Helpers\PriceHelper;
 use App\Models\Product;
 use Illuminate\Support\Collection;
 
@@ -15,12 +16,15 @@ class ProductRepository implements ProductRepositoryInterface
 
     public function create(array $data): Product
     {
+        $data['price'] = PriceHelper::floatToInt($data['price']);
+
         return Product::create($data);
     }
 
     public function update(int $id, array $data): Product
     {
-        $product = Product::findOrFail($id);
+        $product       = Product::findOrFail($id);
+        $data['price'] = PriceHelper::floatToInt($data['price']);
         $product->update($data);
 
         return $product;

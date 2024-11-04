@@ -5,7 +5,7 @@ namespace App\Services\OpenAI;
 use Psr\Http\Message\ResponseInterface;
 use JsonException;
 
-class OpenAIResponse
+final class OpenAIResponse
 {
     private const STATUS_CODE_200 = 200;
     private const FAIL_MESSAGE = 'Request fail with status code: ';

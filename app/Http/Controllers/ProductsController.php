@@ -5,14 +5,20 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ProductRequest;
 use App\Models\Product;
 use App\Models\ProductDescription;
+use App\Services\Product\ProductService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 
 class ProductsController extends Controller
 {
+    public function __construct(
+        protected ProductService $productService
+    ) {
+    }
+
     public function index()
     {
-
+        return view('products.index');
     }
 
     public function create(): View
@@ -23,14 +29,7 @@ class ProductsController extends Controller
     public function store(ProductRequest $request): RedirectResponse
     {
         $validated = $request->validated();
-
-        $product = Product::query()->create([
-            'name' => $validated['name'],
-            'price_net' => $validated['price_net'],
-            'quantity' => $validated['quantity'],
-        ]);
-
-
+        $this->productService->create($validated);
 
         return redirect()->route('products.index');
     }
