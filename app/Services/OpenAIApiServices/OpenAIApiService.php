@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Services\OpenAI;
+namespace App\Services\OpenAIApiServices;
 
+use App\Services\OpenAIApiServices\OpenAIApiServiceInterface;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 use JsonException;
 
-abstract class OpenAIApi
+class OpenAIApiService implements OpenAIApiServiceInterface
 {
     protected string $url;
     protected string $apiKey;
@@ -28,7 +29,7 @@ abstract class OpenAIApi
      * @throws GuzzleException
      * @throws JsonException
      */
-    protected function sendRequest(
+    public function sendRequest(
         array $messages,
         array $responseFormat,
         string $model = 'gpt-4o-mini',

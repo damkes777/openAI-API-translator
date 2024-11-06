@@ -3,8 +3,8 @@
 return [
     'type' => 'json_schema',
     'json_schema' => [
-        'name' => 'description_translation_schema',
-        'description' => 'Translated product description to given languages',
+        'name' => 'multiple_languages_schema',
+        'description' => 'Translated sentence to given languages',
         'schema' => [
             'type' => 'object',
             'properties' => [
@@ -13,17 +13,17 @@ return [
                     'items' => [
                         'type' => 'object',
                         'properties' => [
-                            'product_description' => [
+                            'sentence' => [
                                 'type' => 'string',
-                                'description' => 'Translated product description',
+                                'description' => 'Translated sentence',
                             ],
-                            'description_language' => [
+                            'sentence_language' => [
                                 'type' => 'string',
-                                'description' => 'Language of the translated product description',
+                                'description' => 'Language of the translated sentence',
                             ],
                         ],
                     ],
-                    'description' => 'Array of translated product descriptions for different languages',
+                    'description' => 'Array of translated sentence for different languages',
                 ],
             ],
         ],

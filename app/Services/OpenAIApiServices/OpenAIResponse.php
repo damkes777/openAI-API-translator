@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Services\OpenAI;
+namespace App\Services\OpenAIApiServices;
 
-use Psr\Http\Message\ResponseInterface;
 use JsonException;
+use Psr\Http\Message\ResponseInterface;
 
-final class OpenAIResponse
+class OpenAIResponse
 {
     private const STATUS_CODE_200 = 200;
     private const FAIL_MESSAGE = 'Request fail with status code: ';
