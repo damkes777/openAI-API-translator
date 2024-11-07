@@ -16,4 +16,6 @@ interface ProductRepositoryInterface
     public function delete(int $id): void;
 
     public function find(int $id): Product;
+
+    public function createDescriptions(array $data, int $id): Collection;
 }

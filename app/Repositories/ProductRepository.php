@@ -40,4 +40,12 @@ class ProductRepository implements ProductRepositoryInterface
     {
         return Product::findOrFail($id);
     }
+
+    public function createDescriptions(array $data, int $id): Collection
+    {
+        $product = $this->find($id);
+
+        return $product->descriptions()
+                       ->createMany($data);
+    }
 }

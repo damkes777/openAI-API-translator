@@ -37,4 +37,24 @@ class ProductService
     {
         return $this->productRepository->find($id);
     }
+
+    public function createDescriptions(array $data, int $id): Collection
+    {
+        $arrayKeys = array_keys($data);
+        $languages = [];
+        foreach ($arrayKeys as $arrayKey) {
+            $languages[] = explode('_', $arrayKey)[1];
+        }
+        $descriptions = array_combine($languages, $data);
+        $preparedData = [];
+        foreach ($descriptions as $language => $description) {
+            $preparedData[] = [
+                'product_id' => $id,
+                'language' => $language,
+                'description' => $description,
+            ];
+        }
+
+        return $this->productRepository->createDescriptions($preparedData, $id);
+    }
 }
