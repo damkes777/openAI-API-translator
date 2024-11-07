@@ -6,13 +6,14 @@ use App\Http\Requests\ProductRequest;
 use App\Models\Product;
 use App\Models\ProductDescription;
 use App\Services\Product\ProductService;
+use App\Services\ProductDescriptionServices\ProductDescriptionService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 
-class ProductsController extends Controller
+class ProductController extends Controller
 {
     public function __construct(
-        protected ProductService $productService
+        protected ProductService $productService,
     ) {
     }
 
@@ -29,7 +30,15 @@ class ProductsController extends Controller
     public function store(ProductRequest $request): RedirectResponse
     {
         $validated = $request->validated();
-        $this->productService->create($validated);
+        $product   = $this->productService->create($validated);
+
+        $description = [
+            'description_pl' => $validated['description_pl'],
+            'description_en' => $validated['description_en'],
+            'description_de' => $validated['description_de'],
+        ];
+
+        $this->productService->createDescriptions($description, $product->id);
 
         return redirect()->route('products.index');
     }

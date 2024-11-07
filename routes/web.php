@@ -1,13 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\ProductController;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::controller(ProductsController::class)
+Route::controller(ProductController::class)
      ->group(function () {
          Route::get('products', 'index')
               ->name('products.index');
