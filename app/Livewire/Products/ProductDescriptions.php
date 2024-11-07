@@ -19,9 +19,16 @@ class ProductDescriptions extends Component
         return view('livewire.products.product-descriptions');
     }
 
-    public function translate(MultipleLanguagesTranslation $languagesTranslation)
+    public function translate(MultipleLanguagesTranslation $languagesTranslation): void
     {
-        $translated = $languagesTranslation->translate(self::LANGUAGES, $this->description_pl);
-        dd($translated);
+        $translated = collect($languagesTranslation->translate(self::LANGUAGES, $this->description_pl)
+                                                   ->first());
+
+        $this->description_pl = $translated->where('sentence_language', 'pl')
+                                           ->first()['sentence'];
+        $this->description_en = $translated->where('sentence_language', 'en')
+                                           ->first()['sentence'];
+        $this->description_de = $translated->where('sentence_language', 'de')
+                                           ->first()['sentence'];
     }
 }

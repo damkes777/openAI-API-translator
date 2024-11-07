@@ -3,6 +3,7 @@
 namespace App\Services\TranslationServices;
 
 use App\Services\OpenAIApiServices\OpenAIApiServiceInterface;
+use Illuminate\Support\Collection;
 
 class MultipleLanguagesTranslation
 {
@@ -20,11 +21,11 @@ class MultipleLanguagesTranslation
     public function translate(
         array $languages,
         string $sentence,
-    ): array {
+    ): array|Collection {
         $messages = $this->prepareMessages($languages, $sentence);
         $response = $this->AIApiService->sendRequest($messages, $this->responseFormat);
 
-        return $response->getStatusCode() === 200 ? $response->getResult() : [];
+        return $response->getStatusCode() === 200 ? $response->getResult(true) : [];
     }
 
     private function prepareMessages(array $languages, string $sentence): array

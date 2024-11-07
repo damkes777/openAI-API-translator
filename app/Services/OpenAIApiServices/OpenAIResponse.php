@@ -2,6 +2,7 @@
 
 namespace App\Services\OpenAIApiServices;
 
+use Illuminate\Support\Collection;
 use JsonException;
 use Psr\Http\Message\ResponseInterface;
 
@@ -53,8 +54,12 @@ class OpenAIResponse
         return $this->refusal;
     }
 
-    public function getResult(): array
+    public function getResult(bool $asCollection = false): array|Collection
     {
+        if ($asCollection) {
+            return collect($this->result);
+        }
+
         return $this->result;
     }
 
