@@ -3,11 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProductRequest;
-use App\Models\Product;
-use App\Models\ProductDescription;
 use App\Services\Product\ProductService;
-use App\Services\ProductDescriptionServices\ProductDescriptionService;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class ProductController extends Controller
@@ -41,5 +39,10 @@ class ProductController extends Controller
         $this->productService->createDescriptions($description, $product->id);
 
         return redirect()->route('products.index');
+    }
+
+    public function edit(Request $request): View
+    {
+        return view('products.edit');
     }
 }

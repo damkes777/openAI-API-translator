@@ -7,10 +7,13 @@ use App\Models\Product;
 use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
+use Rappasoft\LaravelLivewireTables\Views\Columns\ButtonGroupColumn;
+use Rappasoft\LaravelLivewireTables\Views\Columns\LinkColumn;
 use Rappasoft\LaravelLivewireTables\Views\Filters\BooleanFilter;
 
 class ProductsList extends DataTableComponent
 {
+    public const BUTTONS_CLASS = 'py-2 px-3 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700';
 
     public function configure(): void
     {
@@ -53,7 +56,22 @@ class ProductsList extends DataTableComponent
                   ->sortable()
                   ->searchable()
                   ->format(fn($value, $row, Column $column) => $row->return_politycy ?? 'N/A'),
-
+            ButtonGroupColumn::make(__('Actions'))
+                             ->attributes(function ($row) {
+                                 return [
+                                     'class' => 'space-x-2',
+                                 ];
+                             })
+                             ->buttons([
+                                 LinkColumn::make('View')
+                                           ->title(fn($row) => __('Edit'))
+                                           ->location(fn($row) => route('product.edit', $row->id))
+                                           ->attributes(function ($row) {
+                                               return [
+                                                   'class' => self::BUTTONS_CLASS,
+                                               ];
+                                           }),
+                             ]),
         ];
     }
 }
