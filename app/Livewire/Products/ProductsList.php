@@ -13,7 +13,8 @@ use Rappasoft\LaravelLivewireTables\Views\Filters\BooleanFilter;
 
 class ProductsList extends DataTableComponent
 {
-    public const BUTTONS_CLASS = 'py-2 px-3 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700';
+    private const BUTTON_SECONDARY_CLASS = 'py-2 px-3 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700';
+    private const BUTTON_DANGER_CLASS = 'focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-3 py-2 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900';
 
     public function configure(): void
     {
@@ -48,7 +49,6 @@ class ProductsList extends DataTableComponent
             Column::make(__('Category'), 'category')
                   ->searchable()
                   ->format(fn($value, $row, Column $column) => $row->category ?? 'N/A'),
-
             Column::make(__('State'), 'state')
                   ->searchable()
                   ->format(fn($value, $row, Column $column) => $row->state ?? 'N/A'),
@@ -66,12 +66,21 @@ class ProductsList extends DataTableComponent
                                  LinkColumn::make('View')
                                            ->title(fn($row) => __('Edit'))
                                            ->location(fn($row) => route('product.edit', $row->id))
-                                           ->attributes(function ($row) {
+                                           ->attributes(function () {
                                                return [
-                                                   'class' => self::BUTTONS_CLASS,
+                                                   'class' => self::BUTTON_SECONDARY_CLASS,
                                                ];
                                            }),
-                             ]),
+                                  LinkColumn::make('View')
+                                           ->title(fn() => __('Delete'))
+                                           ->location(fn($row) => route('product.delete', $row->id))
+                                           ->attributes(function () {
+                                               return [
+                                                   'class' => self::BUTTON_DANGER_CLASS,
+                                               ];
+                                           }),
+                             ])
+
         ];
     }
 }

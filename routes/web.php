@@ -9,6 +9,9 @@ Route::get('/', function () {
 
 Route::controller(ProductController::class)
      ->group(function () {
+         Route::get('/product/delete/{id}', 'delete')
+              ->where('id', '[1-9][0-9]*')
+              ->name('product.delete');
          Route::get('/product/edit/{id}', 'edit')
               ->where('id', '[1-9][0-9]*')
               ->name('product.edit');

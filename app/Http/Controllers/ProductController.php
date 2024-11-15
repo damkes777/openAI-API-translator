@@ -45,4 +45,11 @@ class ProductController extends Controller
     {
         return view('products.edit');
     }
+
+    public function delete(Request $request): RedirectResponse
+    {
+        $this->productService->delete($request->id);
+
+        return redirect()->route('products.index');
+    }
 }
