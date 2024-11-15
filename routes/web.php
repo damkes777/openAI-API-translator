@@ -9,7 +9,7 @@ Route::get('/', function () {
 
 Route::controller(ProductController::class)
      ->group(function () {
-         Route::get('products', 'index')
+         Route::get('products/list', 'index')
               ->name('products.index');
          Route::get('products/create', 'create')
               ->name('products.create');
