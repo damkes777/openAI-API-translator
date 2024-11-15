@@ -7,7 +7,6 @@ use App\Models\Product;
 use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
-use Rappasoft\LaravelLivewireTables\Views\Columns\ViewComponentColumn;
 use Rappasoft\LaravelLivewireTables\Views\Filters\BooleanFilter;
 
 class ProductsList extends DataTableComponent

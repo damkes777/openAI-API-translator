@@ -32,7 +32,7 @@
                     <div class="w-full mr-3">
                         <x-form.input-label for="quantity">{{ __('Quantity') }}</x-form.input-label>
                         <x-form.input type="number" id="quantity" name="quantity" placeholder="0"/>
-                        @error('quantity') <span class="text-red-500"> {{ $message }}</span>  @enderror
+                        @error('quantity') <span class="text-red-500"> {{ $message }}</span> @enderror
                     </div>
                     <div class="w-full">
                         <x-form.input-label for="category">{{ __('Category') }}</x-form.input-label>
@@ -43,7 +43,7 @@
                             <option value="category2">{{ __('Category 2') }}</option>
                             <option value="category3">{{ __('Category 3') }}</option>
                         </select>
-                        @error('category') <span class="text-red-500"> {{ $message }}</span>  @enderror
+                        @error('category') <span class="text-red-500"> {{ $message }}</span> @enderror
                     </div>
                 </div>
                 <div class="flex mb-4">
@@ -55,7 +55,7 @@
                             <option value="new">{{ __('New') }}</option>
                             <option value="used">{{ __('Used') }}</option>
                         </select>
-                        @error('state') <span class="text-red-500"> {{ $message }}</span>  @enderror
+                        @error('state') <span class="text-red-500"> {{ $message }}</span> @enderror
                     </div>
                     <div class="w-full">
                         <x-form.input-label for="return_politycy">{{ __('Return politycy') }}</x-form.input-label>
@@ -77,9 +77,12 @@
                 <x-button.primary type="submit">
                     {{ __('Save') }}
                 </x-button.primary>
-                <x-button.secondary>
-                    {{ __('Cancel') }}
-                </x-button.secondary>
+                <a href="{{ route('products.index') }}">
+                    <x-button.secondary type="button">
+                        {{ __('Cancel') }}
+                    </x-button.secondary>
+                </a>
+
             </div>
         </form>
     </div>
