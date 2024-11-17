@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\PriceHelper;
 use App\Http\Requests\ProductRequest;
 use App\Services\Product\ProductService;
 use Illuminate\Http\RedirectResponse;
@@ -43,7 +44,11 @@ class ProductController extends Controller
 
     public function edit(Request $request): View
     {
-        return view('products.edit');
+        $product = $this->productService->find($request->id)->toArray();
+
+        $product['price'] = PriceHelper::intToFloat($product['price']);
+
+        return view('products.edit', ['product' => $product]);
     }
 
     public function delete(Request $request): RedirectResponse

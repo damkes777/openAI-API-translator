@@ -57,14 +57,14 @@ class ProductsList extends DataTableComponent
                   ->searchable()
                   ->format(fn($value, $row, Column $column) => $row->return_politycy ?? 'N/A'),
             ButtonGroupColumn::make(__('Actions'))
-                             ->attributes(function ($row) {
+                             ->attributes(function () {
                                  return [
                                      'class' => 'space-x-2',
                                  ];
                              })
                              ->buttons([
                                  LinkColumn::make('View')
-                                           ->title(fn($row) => __('Edit'))
+                                           ->title(fn() => __('Edit'))
                                            ->location(fn($row) => route('product.edit', $row->id))
                                            ->attributes(function () {
                                                return [
