@@ -7,6 +7,7 @@
     </x-slot:header>
     <div class="flex">
         <form method="post" action="{{ route('products.store') }}" class="flex flex-col w-full max-w-2xl mx-auto">
+            @method('PUT')
             @csrf
             <div class="flex flex-col w-full">
                 <div class="mb-4">
@@ -82,7 +83,6 @@
                         {{ __('Cancel') }}
                     </x-button.secondary>
                 </a>
-
             </div>
         </form>
     </div>

@@ -10,20 +10,21 @@ Route::get('/', function () {
      ->name('dashboard');
 
 Route::controller(ProductController::class)
+     ->prefix('products')
      ->group(function () {
-         Route::get('/product/delete/{id}', 'delete')
+         Route::get('/delete/{id}', 'delete')
               ->where('id', '[1-9][0-9]*')
-              ->name('product.delete');
-         Route::get('/product/edit/{id}', 'edit')
+              ->name('products.delete');
+         Route::get('/edit/{id}', 'edit')
               ->where('id', '[1-9][0-9]*')
-              ->name('product.edit');
+              ->name('products.edit');
          Route::get('products', 'index')
               ->name('products.index');
-         Route::get('products/create', 'create')
+         Route::get('/create', 'create')
               ->name('products.create');
-         Route::post('products/store', 'store')
+         Route::put('/store', 'store')
               ->name('products.store');
-         Route::post('products/update', 'update')
+         Route::post('/update', 'update')
               ->name('products.update');
      });
 
@@ -35,12 +36,14 @@ Route::controller(ParameterController::class)
          Route::get('/create', 'create')
               ->name('parameters.create');
          Route::get('/edit/{id}', 'edit')
+              ->where('id', '[1-9][0-9]*')
               ->name('parameters.edit');
          Route::put('/store', 'store')
               ->name('parameters.store');
          Route::put('/update', 'update')
               ->name('parameters.update');
          Route::delete('/delete/{id}')
+              ->where('id', '[1-9][0-9]*')
               ->name('parameters.delete');
      });
 
