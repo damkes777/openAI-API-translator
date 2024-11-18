@@ -28,12 +28,12 @@
             <div class="flex mt-3">
                 <ul class="flex w-full flex-col text-gray-700">
                     <li class="flex-1">
-                        <a href="{{ route('products.create') }}" class="block w-full p-2 rounded-md hover:bg-gray-100 hover:text-blue-700">
+                        <a href="{{ route('products.create') }}" class="block w-full mb-1 p-2 rounded-md hover:bg-gray-100 hover:text-blue-700">
                             <i class="fa-solid fa-plus mr-2"></i> {{ __('Create product') }}
                         </a>
                     </li>
-                    <li class="flex-1">
-                        <a href="{{ route('products.index') }}" class="block w-full p-2 rounded-md hover:bg-gray-100 hover:text-blue-700">
+                    <li class="flex-1 border-t border-gray-300 border-dashed">
+                        <a href="{{ route('products.index') }}" class="block w-full mt-1 p-2 rounded-md hover:bg-gray-100 hover:text-blue-700">
                             <i class="fa-solid fa-list mr-2"></i> {{ __('Products list') }}
                         </a>
                     </li>
