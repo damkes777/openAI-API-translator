@@ -40,6 +40,25 @@
                 </ul>
             </div>
         </div>
+        <div class="w-1/3 bg-white p-3 shadow-md rounded-md mx-4">
+            <div>
+                <h2 class="text-xl pb-2 font-semibold border-b border-gray-300">{{ __('Parameters') }}</h2>
+            </div>
+            <div class="flex mt-3">
+                <ul class="flex w-full flex-col text-gray-700">
+                    <li class="flex-1">
+                        <a href="{{ route('parameters.create') }}" class="block w-full mb-1 p-2 rounded-md hover:bg-gray-100 hover:text-blue-700">
+                            <i class="fa-solid fa-plus mr-2"></i> {{ __('Create parameter') }}
+                        </a>
+                    </li>
+                    <li class="flex-1 border-t border-gray-300 border-dashed">
+                        <a href="{{ route('parameters.list') }}" class="block w-full mt-1 p-2 rounded-md hover:bg-gray-100 hover:text-blue-700">
+                            <i class="fa-solid fa-list mr-2"></i> {{ __('Parameters list') }}
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </div>
 </main>
 @livewireScripts

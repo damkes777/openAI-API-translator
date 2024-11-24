@@ -65,21 +65,21 @@ class ProductsList extends DataTableComponent
                              ->buttons([
                                  LinkColumn::make('View')
                                            ->title(fn() => __('Edit'))
-                                           ->location(fn($row) => route('product.edit', $row->id))
+                                           ->location(fn($row) => route('products.edit', $row->id))
                                            ->attributes(function () {
                                                return [
                                                    'class' => self::BUTTON_SECONDARY_CLASS,
                                                ];
                                            }),
-                                  LinkColumn::make('View')
+                                 LinkColumn::make('View')
                                            ->title(fn() => __('Delete'))
-                                           ->location(fn($row) => route('product.delete', $row->id))
+                                           ->location(fn($row) => route('products.delete', $row->id))
                                            ->attributes(function () {
                                                return [
                                                    'class' => self::BUTTON_DANGER_CLASS,
                                                ];
                                            }),
-                             ])
+                             ]),
 
         ];
     }
