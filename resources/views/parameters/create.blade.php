@@ -17,13 +17,13 @@
                 <div class="flex mb-4">
                     <div class="w-full mr-3">
                         <x-form.input-label for="parameter_name_eng">{{ __('Name') }}</x-form.input-label>
-                        <x-form.input type="text" id="parameter_name_eng" name="parameter_name_eng"
+                        <x-form.input type="text" id="parameter_name_eng" name="parameter[eng][name]"
                                       placeholder="{{ __('Enter parameter name') }}"/>
                         @error('parameter_name_eng') <span class="text-red-500"> {{ $message }}</span> @enderror
                     </div>
                     <div class="w-full">
                         <x-form.input-label for="parameter_value_eng">{{ __('Value') }}</x-form.input-label>
-                        <x-form.input type="text" id="parameter_value_eng" name="parameter_value_eng"
+                        <x-form.input type="text" id="parameter_value_eng" name="parameter[eng][value]"
                                       placeholder="{{ __('Enter parameter value') }}"/>
                         @error('price') <span class="text-red-500"> {{ $message }}</span> @enderror
                     </div>

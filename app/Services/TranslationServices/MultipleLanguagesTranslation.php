@@ -7,8 +7,8 @@ use Illuminate\Support\Collection;
 
 class MultipleLanguagesTranslation
 {
-    private const USER_PROMPT = 'Translate the sentence: ';
     private const SYSTEM_PROMPT = 'You translate the given sentence into the following languages: ';
+    private const USER_PROMPT = 'Translate the sentence: ';
 
     protected array $responseFormat;
 
