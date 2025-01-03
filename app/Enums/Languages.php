@@ -5,7 +5,6 @@ namespace App\Enums;
 enum Languages
 {
     case POLISH;
-    case ENGLISH;
     case GERMAN;
     case RUSSIAN;
 
@@ -13,7 +12,6 @@ enum Languages
     {
         return match ($this) {
             self::POLISH => 'pl',
-            self::ENGLISH => 'en',
             self::GERMAN => 'de',
             self::RUSSIAN => 'ru'
         };
@@ -23,7 +21,6 @@ enum Languages
     {
         return match ($this) {
             self::POLISH => 'Polish',
-            self::ENGLISH => 'English',
             self::GERMAN => 'German',
             self::RUSSIAN => 'Russian',
         };
